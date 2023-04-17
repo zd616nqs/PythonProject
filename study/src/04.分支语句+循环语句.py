@@ -75,6 +75,13 @@ for temp2 in range(3, 6):  # 相当于区间[3,6)
     print(temp2)  # 结果:3、4、5
 for temp3 in "niu":
     print(temp3)  # 结果:n、i、u
+    
+# ------for循环------
+for tempIdx, tempStr in enumerate(listArr):
+    print('当前下标：%d，当前数据：%s' % (tempIdx, tempStr))
+# 当前下标：0，当前数据：niu
+# 当前下标：1，当前数据：qing
+# 当前下标：2，当前数据：shan
 
     
 # -----break和continue-----
