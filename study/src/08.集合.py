@@ -1,0 +1,62 @@
+# --------------集合的基本使用----------------
+# 集合特点：无序、元素不重复
+# 集合跟字典书写方式区分：字典：键值对  集合：单个元素
+testSet = {'niu', 'qing', 'shan'}
+print('testSet: ', testSet)  # 每次打印顺序是随机的
+
+tuple111 = (1, 2, 3, 4)
+tuple222 = (3, 4, 5, 6)
+total = set(tuple111 + tuple222)
+print('total: ', total)  # 结果：total:  {1, 2, 3, 4, 5, 6}
+
+
+
+# 添加一个元素
+testSet.add('哈哈哈')
+print('testSet: ', testSet)
+
+# 删除一个元素 pop、remove
+testSet.pop()         # 随机删掉一个元素
+print('testSet: ', testSet)
+# testSet.remove('66666')  # 删除一个指定的元素(元素不存在时会报错)
+# print('testSet: ', testSet)
+
+
+# union：a.union(b) 将集合a和b取并集，返回一个新的集合
+xxx = {'111', '222'}.union({'222', '777', '888'})
+print('xxx: ', xxx)  # 结果：xxx:  {'111', '888', '222', '777'}
+
+
+# update:a.update(b) 将集合b拼进集合a内
+aaa = {'111', '222'}
+bbb = {'222', '777', '888'}
+aaa.update(bbb)
+print('aaa:{}, bbb:{}'.format(aaa, bbb))  
+# 结果：aaa:{'111', '888', '777', '222'}, bbb:{'888', '777', '222'}
+
+
+# 清空集合
+testSet.clear()
+print(testSet)  # 结果：set()   注意：空的集合不是{},而是 set()
+
+
+# --------------集合的高级使用----------------
+# set 支持很多算数运算符
+
+# 不支持加号+
+
+# -：减法  (作为减数的集合，去除共有项)
+# 备注：ccc和ddd的值没有发生变化
+ccc = {'111', '222'}
+ddd = {'222', '777', '888'}
+print(ccc - ddd)  # 结果：{'111'}
+print(ddd - ccc)  # 结果：{'777', '888'}
+
+# &:求交集
+print(ccc & ddd)  # 结果：{'222'}
+
+# |：求并集
+print(ccc | ddd)  # 结果：{'222', '888', '111', '777'}
+
+# ^：异或(并集去除交集部分)
+print(ccc ^ ddd)  # 结果：{'888', '111', '777'}
