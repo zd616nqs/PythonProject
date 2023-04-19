@@ -33,9 +33,9 @@ print('xx: ', xx)  # 结果：xx:  {"name": "\u725b\u725b", "age": 18, "gender":
 jsonStr111 = '{"name": "\u725b\u725b", "age": 18, "gender": "\u7537"}'
 # 方式1：使用eval
 fff = eval(jsonStr111)
-print(type(fff))  # <class 'dict'>
+print(type(fff))     # <class 'dict'>
 print('fff: ', fff)  # fff:  {'name': '牛牛', 'age': 18, 'gender': '男'}
 # 方式2：使用json.loads()函数
 eee = json.loads(jsonStr111)
-print(type(eee))
-print('eee: ', eee)
+print(type(eee))     # <class 'dict'>
+print('eee: ', eee)  # eee:  {'name': '牛牛', 'age': 18, 'gender': '男'}
