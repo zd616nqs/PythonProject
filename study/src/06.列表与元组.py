@@ -117,7 +117,7 @@ print(sortArr111)  # 结果：[1, 2, 3, 5, 6, 7, 8]
 sortArr111.sort(reverse=True)
 print(sortArr111)  # 结果：[8, 7, 6, 5, 3, 2, 1]
 
-sortNewArr = sorted(sortArr111)
+sortNewArr = sorted(sortArr111)  # 返回一个新的排序过的列表
 print('sortNewArr: ', sortNewArr)  # 结果:sortNewArr:  [1, 2, 3, 5, 6, 7, 8]
 
 sortArr222 = [1, 2, 3]
@@ -251,3 +251,8 @@ print()
 # 元组的拼接（可以直接使用+拼接）
 # 注意：其实也可以直接使用+拼接
 print((1, 2, 3) + (7, 8, 9))  # 结果：(1, 2, 3, 7, 8, 9)
+
+
+tuple333 = (5, 3, 1, 4)
+sortNewList = sorted(tuple333)  # 返回一个新的排序过的列表
+print('sortNewList: ', sortNewList)  # 结果:sortNewArr:  [1, 3, 4, 5]
