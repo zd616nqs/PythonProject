@@ -73,6 +73,7 @@ print('\n')
 # ---------函数的参数动态获取（*args和**kwargs）-----------------
 print('-----函数的参数动态获取（*args和**kwargs）--------')
 # ---- *argname：可变位置参数(传入没有定义的变量名会报错)----
+# 用来发送一个 非键值对 的可变数量的参数列表给一个函数
 # 保存形式：元组
 def dynamicParasMethod111(a, b, *nqs_args):
     print('a={}, b={}, args={}'.format(a, b, nqs_args))
@@ -82,6 +83,8 @@ dynamicParasMethod111(1, 2, 3, 4, 5, 6, 7)  # a=1, b=2, args=(3, 4, 5, 6, 7)
 
 # ---- **kwargs  可变的关键字参数----
 # 多余的**kwargs变量，传入时必须显式声明变量名
+# **kwargs 允许你将不定长度的键值对, 作为参数传递给一个函数。 
+# 如果你想要在一个函数里处理带名字的参数, 你应该使用**kwargs。比如：a=10。
 # 保存形式：字典
 def dynamicParasMethod222(a, b, **nqs_kwargs):
     print('a={}, b={}, args={}'.format(a, b, nqs_kwargs))
@@ -97,6 +100,8 @@ print('\n')
 print('-----局部变量和全局变量的作用域--------')
 # 在python内，全局变量和局部变量可以同名！！各是各的，不会相互影响。但是还是尽量避免同名
 # 如果想在函数内修改全局变量的值，使用global关键字
+# nonlocal和global的区别
+# https://blog.csdn.net/weixin_43439761/article/details/127869277
 aaa = 100
 bbb = 'hello'
 

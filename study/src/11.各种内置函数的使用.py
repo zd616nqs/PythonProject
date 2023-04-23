@@ -29,6 +29,7 @@ print("斐波那契数列：", end="")
 def fibonacci_func(index, lastNum):
     global targetMaxIndex
     global currentNum
+    
     if index == 0:
         currentNum = 1
         print(currentNum, end=" ")
