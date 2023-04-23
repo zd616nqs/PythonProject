@@ -1,5 +1,4 @@
-
-# 函数的高阶使用
+# -------------函数的高阶使用------------
 
 # 1.一个函数作为两位一个函数的参数   典型例如lambda
 # 2.一个函数作为两位一个函数的返回值  return 调用函数
@@ -34,5 +33,18 @@ outerMethod()()
 # nonlocal和global的区别
 # https://blog.csdn.net/weixin_43439761/article/details/127869277
 
-# -------------递归调用------------
-print("-----递归调用--------")
+
+
+# -------------闭包的概念-------------
+# 在一个内部函数里，调用了一个外部作用域的变量(但不是全局作用域的变量)，那么这个内部函数就被认为是闭包
+# innerFunc222函数就是一个闭包
+def outerFunc222():
+    xx = 10
+    
+    def innerFunc222():
+        yy = xx + 10
+        return yy
+    return innerFunc222
+outerFunc222()()
+
+
