@@ -115,6 +115,9 @@ print(calendar.leapdays(2001, 2009)) # 2
 # ----------hashlib哈希模块-------
 # 官方文档：https://docs.python.org/zh-cn/3.11/library/hashlib.html
 
+# digest() 返回的是二进制数据
+# hexdigest() 返回的是十六进制数据
+
 # md5加密
 test_md5 = hashlib.md5()                # 生成一个md5对象
 test_md5.update("牛青山".encode('utf8')) # 加密一段字符串
@@ -136,6 +139,7 @@ print(h3.hexdigest()) # 5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c1
 
 # ----------hmac秘钥模块-------
 # 官方文档：https://docs.python.org/zh-cn/3.11/library/hmac.html
+# https://blog.csdn.net/weixin_38819889/article/details/122457122
 # hmac也是单向加密
 h4 = hmac.new('12345'.encode(), 'msg_加密盐'.encode(), hashlib.md5)
 print(h4.hexdigest())  # a85e8302af328ed0654bfe40c45d7be7
