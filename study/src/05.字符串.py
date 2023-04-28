@@ -26,14 +26,14 @@ print(word6, "\n", word7)
 # ----------------字符串的索引和切片------------------
 # 字符串是不可变数据源，操作下标不能改变字符串
 name = 'niuqingshan'
-print(name[3])  # 结果：q
-# name[3] = 'm' # 操作不可变数据源，会报错
 
 # 切片：从字符串里复制一段指定的内容，生成一个一个新的字符串
 # 语法：name[start:end:step]  
 # 取值区间：包含start，不包含end。
 # 如果不写end则会截取到最后。  如果不设置start，会从头截取
 # step：截取的步长，默认1依次取（等于0时报错，小于0时表示从右往左获取）
+print(name[3])  # 结果：q
+# name[3] = 'm' # 操作不可变数据源，会报错
 print(name[3:7])    # 结果：qing        （步长step默认为1）
 print(name[3:7:2])  # 结果：qn          （步长step为2）
 print(name[3:])     # 结果：qingshan    （截取到最后）
