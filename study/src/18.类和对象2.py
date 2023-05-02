@@ -102,3 +102,94 @@ Dog.run()    # 这是一个狗狗
 # 类方法：类调用和实例对象 都可以调用(入参不用显示传入cls)
 dog111.jump() # <class '__main__.Dog'>
 Dog.jump()    # <class '__main__.Dog'>
+
+
+
+
+
+
+# ---------------------单例的使用-----------
+# 还有其他5种实现方式：todo:niu 待补充进笔记 
+# https://blog.csdn.net/weixin_51213906/article/details/125905589 
+
+class SingletonTest(object):
+    def __init__(self, name) -> None:
+        self.name = name
+    
+    # 重写申请内存方法
+    def __new__(cls, *args, **kwargs): 
+        if not hasattr(SingletonTest, "nqs_instance"):
+            SingletonTest.nqs_instance = object.__new__(cls)
+        return SingletonTest.nqs_instance
+
+        
+single1 = SingletonTest('第一次创建') 
+print(hex(id(single1)))  # 0x1042265d0
+single2 = SingletonTest('第二次创建')
+print(hex(id(single2)))  # 0x1042265d0
+print(hex(id(single1)), hex(id(single2))) # 0x1042265d0 0x1042265d0
+
+print(single1.name, single2.name) # 第二次创建 第二次创建
+print(single1 is single2) # True
+
+
+
+
+
+
+
+
+
+# ---------------------类的继承---------------
+# 父类里定义的属性，子类可以直接调用
+# 父类里定义的方法，子类的实例对象可以直接嗲用
+# 调用方法时，从子类-》父类-》父类的父类-》object这个顺序去查找
+
+# python内支持多继承
+# 多个父类有同名的方法时,按照声明继承父类的先后顺序执行前面的
+#       object->A(foo)->B->X  
+#       object->C->D(foo)->X  
+#       X(B,D) 
+#       x=X() x.foo() 
+#       输出：打印A类里的foo
+#       X(B,D)的话 顺序：B->A->D->C
+#       X(D,B)的话 顺序：D->C->B->A
+class Animal(object):
+    def __init__(self, name) -> None:
+        self.name = name
+    
+    def run(self):
+        print(self.name+'奔跑')
+        
+    def play(self):
+        print('动物玩耍')
+        
+class Pet(object):
+    def __init__(self, action) -> None:
+        self.action = action
+    
+    def play(self):
+        print('宠物玩耍')
+
+class Dog(Animal):
+    def __init__(self, name) -> None:
+        super().__init__(name)
+        
+    def eat_shit(self):
+        print(self.name+'吃屎')
+    
+class Cat(Animal, Pet):
+    def __init__(self, name) -> None:
+        super().__init__(name)
+    
+    def sleep(self):
+        print(self.name+'睡懒觉')
+
+dog = Dog('安娜')
+dog.run()
+dog.eat_shit()
+
+cat = Cat('荔枝')
+cat.run()
+cat.sleep()
+cat.play() # 动物玩耍  
