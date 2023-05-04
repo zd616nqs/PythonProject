@@ -1,5 +1,5 @@
 
-# ----------------------类属性和实例属性---------------------
+# ----------------------类属性 和 实例属性---------------------
 class Lizhi(object):
     type = '猫咪'
     
@@ -22,7 +22,7 @@ Lizhi.type = '猴子'
 print(lizhi222.type) # 猴子
 
 
-# --------------------私有变量和私有属性---------------------
+# --------------------私有变量---------------------
 class Coco(object):
     def __init__(self, name, age) -> None:
         self.name = name
@@ -46,7 +46,7 @@ class Coco(object):
 
 coco111 = Coco('coco1号', 2)
 
-# -------私有属性调用------
+# -------私有变量调用------
 # 0.常规获取方式，会报错，获取不到私有变量
 # print(coco111.__height)  
 # 1. 使用 对象._类名__私有变量名的方式可以获取到
@@ -60,7 +60,7 @@ print(coco111.get_height_func())  # 9斤
 # -------私有方法调用------
 # 0.常规方式调用，会报错
 # coco111.__demo()  
-# 1. 使用 对象._类名__私有方法名的方式可行
+# 1. 使用 实例对象._类名__私有方法名的方式可行
 coco111._Coco__demo()  # 我是私有函数__demo
 
 
@@ -193,3 +193,34 @@ cat = Cat('荔枝')
 cat.run()
 cat.sleep()
 cat.play() # 动物玩耍  
+
+
+# ------继承的情况下 私有变量和私有方法的访问--------
+
+class Animal222(object):
+    def __init__(self, name) -> None:
+        self.name = name
+        self.__fav = '父类私有变量'
+    
+    def __fatherMethod(self):
+        print(self.name+'奔跑')
+        
+        
+class Dog222(Animal222):
+    def __init__(self, name) -> None:
+        super().__init__(name)
+        
+anim111 = Animal222('动物类')
+dog111 = Dog222('狗狗狗狗')
+
+# 1.子类访问父类的 私有变量（格式：实例对象._父类名__私有变量）
+# print(dog111._Dog222__fav)   # 会报错
+print(dog111._Animal222__fav)  # 输出：父类私有变量
+
+# 2.子类访问父类的 私有方法（格式：实例对象._父类名__私有方法）
+# dog111._Dog222__fatherMethod()   # 会报错
+dog111._Animal222__fatherMethod()  # 输出：狗狗狗狗奔跑
+
+
+
+
