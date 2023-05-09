@@ -14,7 +14,7 @@ word5 = "good mor\\ning"
 print(word3, "  ", word4)  # 结果：I'm Niuqingshan    I am:"linlin"
 print(word5)              # 结果：good mor\ning
 
-# 在字符串前面加r，在python里表示的是原声字符串，防止字符串内有转义字符的情况
+# 在字符串前面加r，在python里表示的是原生字符串，防止字符串内有转义字符的情况
 # 注意：大小写R\r都可以
 word6 = "good af\ternoon"  # 结果：good af ernoon 
 word7 = r"good af\ternoon" # 结果：good af\ternoon
