@@ -33,8 +33,8 @@ file2.close()
 
 
 # --------------------json反序列化----------------
-# json.loads 将json字符串，并加载成为一个对象
-# json.load  读取文件，并加载成一个对象
+# json.loads 将json字符串，并加载成为一个对象(常见内置对象，不包括自定义类)
+# json.load  读取文件，并加载成一个对象(常见内置对象，不包括自定义类)
 
 example_json_str = '{"name":"niuniu", "age":18}'
 result1 = json.loads(example_json_str)
