@@ -104,7 +104,7 @@ if os.path.isfile(old_file_path):
     
     
     newFile = open(new_file_path, encoding='utf8')
-    newFile.write(oleFile.read())
+    newFile.write(oleFile.read())  # write方法只能写入字符串
     
     oleFile.close()
     newFile.close()
