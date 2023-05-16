@@ -15,7 +15,7 @@ outerFunc222()()
 
 
 # -------------计算函数执行的耗时------------
-# time.time() 表示从1970年零点零分到目前的描述
+# time.time() 表示从1970年0点0分到目前的描述
 
 # ------正常的耗时计算-----
 print("----正常的耗时计算----")
@@ -91,21 +91,21 @@ print('装饰后的demo11函数：{}'.format(demo11))  # 装饰后的demo11函�
 @cal_time
 def demo22():
     time.sleep(2)
-demo22()  
+demo22()   # 耗时：2.00秒
 
 # ---2.无入参有返回场景
 @cal_time
 def demo33():
     time.sleep(1)
     return 99999
-result33 = demo33()  
+result33 = demo33()   # 耗时：1.01秒
 print('返回值result33={}'.format(result33))  # 返回值result33=99999
 
 # ---3.1 有单入参有返回场景
 @cal_time
 def demo44(param):
     return param*100
-result44 = demo44(888)  
+result44 = demo44(888)  # 耗时：0.00秒
 print('返回值result44={}'.format(result44))  # 返回值result44=88800
 
 
@@ -115,11 +115,13 @@ print('返回值result44={}'.format(result44))  # 返回值result44=88800
 def can_play(fn):
     def inner(x, y, *args, **krargs):
         fn(x, y)
+        
         age = -1
         game_time = -1
         age = krargs.get('age')
         game_time = krargs.get('clock')
         print('年龄:{}, 时间:{}'.format(age, game_time), end="-- ")
+        
         if age is None:
             print('非法！！请输入用户年龄！')
         elif game_time is None:
