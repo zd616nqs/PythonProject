@@ -49,6 +49,7 @@ calTimeFunc(testConsumingFunc)  # 耗时：1.91秒
 
 
 # --------使用装饰器统计耗时---------
+# 装饰器 带参数 和 不带参数 两种情况调用逻辑是不同的，切记！！！！
 print("----使用装饰器统计耗时----")
 ''' 
     @cal_time发生了什么？
@@ -111,10 +112,14 @@ print('返回值result44={}'.format(result44))  # 返回值result44=88800
 
 
 
+
+
+
+
 # 最复杂场景：多个入参、多个返回
-def can_play(fn):
-    def inner(x, y, *args, **krargs):
-        fn(x, y)
+def can_play(temp_func):
+    def inner(temp_name, temp_game, *args, **krargs):
+        temp_func(temp_name, temp_game)
         
         age = -1
         game_time = -1
@@ -134,6 +139,7 @@ def can_play(fn):
                 print('时间合理，可以进行游戏')
         else:
             print('未成年，不能游戏')
+        
         return age, game_time
     return inner
         
