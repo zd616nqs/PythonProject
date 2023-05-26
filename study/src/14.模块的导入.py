@@ -75,6 +75,19 @@ del (testFunc, _testInnerFunc, mmm, _nnn)
 
 
 
+# ----------7.给模块内的类方法添加别名，使外部import模块后，不用初始化类就能直接调用特定方法---
+class CustomPerson(object):
+    def __init__(self, name) -> None:
+        self.name = name
+        
+    def eat(self, foodName):
+        print(self.name + '正在吃' + foodName)
+
+p = CustomPerson('牛牛')
+eat = p.eat  # 起别名
+
+# import 当前模块文件名
+# 当前模块文件名.eat('西红柿鸡蛋')   #打印：牛牛正在吃西红柿鸡蛋
 
 
 # ------------__init__.py介绍-----------
