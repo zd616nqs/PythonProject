@@ -152,18 +152,74 @@ print('tempResult3: ', tempResult3) # tempResult3:  <re.Match object; span=(6, 1
 #     DOTALL = S = _compiler.SRE_FLAG_DOTALL # make dot match newline
 #     VERBOSE = X = _compiler.SRE_FLAG_VERBOSE # ignore whitespace and comments
 
-# re.S 使.匹配，包括换行符\在内的所有字符
+# ------re.S 使.匹配，包括换行符\在内的所有字符------
 print(re.search(r'1.*5', 'nqs1wev\ne5jj'))        # None
 print(re.search(r'1.*5', 'nqs1wev\ne5jj', re.S))  # <re.Match object; span=(2, 13), match='s1wev\\we5jj'>
-# re.I 匹配忽略大小写
+# ------re.I 匹配忽略大小写------
 print(re.search(r'q', 'niuQingshan'))        # None
 print(re.search(r'q', 'niuQingshan', re.I))  # <re.Match object; span=(3, 4), match='Q'>
-# re.M 多行匹配
+# ------re.M 多行匹配(影响^和$ 行首行尾匹配)------
 mmmm = '''  
 niu
 qing
 shan
 '''
 print(re.search(r'^qi', mmmm))        # None
-print(re.search(r'^qi', mmmm, re.M))
+print(re.search(r'^qi', mmmm, re.M))  # <re.Match object; span=(7, 9), match='qi'>
 
+
+
+
+# ---------------------正则的替换-----------
+cocoStr = 'lkj236kljokj2o3n243nio32j'
+# 正常的替换字符
+print(re.sub(r'\d', 'x', cocoStr))  # lkjxxxkljokjxoxnxxxnioxxj
+print(re.sub(r'\d+', 'x', cocoStr)) # lkjxkljokjxoxnxnioxj
+
+# 把字符内的数字乘2 (使用一个函数进行处理)
+def multiplyFunc(tempValue):
+    return str(int(tempValue.group(0)) * 2)
+print(re.sub(r'\d', multiplyFunc, cocoStr))  # lkj4612kljokj4o6n486nio64j
+print(re.sub(r'\d+', multiplyFunc, cocoStr)) # lkj472kljokj4o6n486nio64j
+
+
+# ---------------------正则的贪婪模式和非贪婪模式-----------
+# python中，默认是贪婪模式，尽可能多的匹配
+lizhiStr = 'niuqingshanan673'
+print(re.search(r'g.*a', lizhiStr).group())  # gshana
+print(re.search(r'g.*?a', lizhiStr).group()) # gsha
+
+testnnn = 'aa2345nqs'
+match1 = re.search(r'aa(\d+)nqs', testnnn)
+print(match1.group(0)) # aa2345nqs
+print(match1.group(1)) # 2345
+
+match2 = re.search(r'aa(\d+?)nqs', testnnn)
+print(match2.group(0)) # aa2345nqs
+print(match2.group(1)) # 2345 ?????有疑问，应该是2
+
+match3 = re.search(r'aa(\d??)(.*)', testnnn)
+print(match3.group(0)) # aa2345nqs
+print(match3.group(1)) # 空
+print(match3.group(2)) # 2345nqs
+
+
+
+# ----------练习：ip地址检测 0.0.0.0~255.255.255.255-----------
+num = input('请输入ip地址:')
+# 1位数： \d
+# 2位数：[1-9]\d
+# 3位数：1\d{2}|2([0-4]\d|5[0-5])   (1开头的三位数)|(2开头的三位数(十位数0~4&个位数0~9)|(十位数5&个位数0~5)
+
+regexStr = r"((\d|[1-9]\d|1\d{2}|2([0-4]\d|5[0-5]))\.){3}(\d|[1-9]\d|1\d{2}|2([0-4]\d|5[0-5]))"
+correctResult11 = re.fullmatch(regexStr, num)
+print('correctResult: ', correctResult11) 
+# correctResult:  <re.Match object; span=(0, 12), match='192.234.23.2'>
+
+
+# 拆解：
+singAreaRegx = r"(\d|[1-9]\d|1\d{2}|2([0-4]\d|5[0-5]))"
+totalRegxStr = "(" + singAreaRegx + "\.){3}" + singAreaRegx
+print('totalRegxStr: ', totalRegxStr)
+correctResult22 = re.fullmatch(totalRegxStr, num)
+print('correctResult22: ', correctResult22)

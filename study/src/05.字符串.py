@@ -97,7 +97,7 @@ print(name555.title())       # 结果：Niu Qing Shan
 # ljust(length,fillchar)  让字符以指定长度显示(左对齐)，如果长度不够用填充字符(默认空格)补充，如果长度太短就打印原本的字符串
 # center(length,fillchar) 让字符以指定长度显示(居中对齐)，如果长度不够用填充字符(默认空格)补充，如果长度太短就打印原本的字符串
 # lstrip 删除左边的空格(匹配从左到右的第一段空格)
-# rstrip 删除右边的空格(匹配从友到左的第一段空格)
+# rstrip 删除右边的空格(匹配从右到左的第一段空格)
 name666 = 'niuqingshan'
 print(name666.ljust(30)+"mark")       # 结果：niuqingshan                   mark
 print(name666.ljust(30, '-')+"mark")  # 结果：niuqingshan-------------------mark
