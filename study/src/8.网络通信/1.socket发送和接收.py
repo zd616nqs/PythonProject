@@ -35,7 +35,7 @@ data, addr = recSocket.recvfrom(1024) # buffersize为1024
 # addr = recSocket.recvfrom(1024)[1] 
 
 # b'\xe4\xb8\x8b\xe5\x8d\x88\xe5\xa5\xbd',('192.168.199.11', 60737)
-print('从ip地址{}端口{}接收到了消息，内容是：{}'.format(addr[0], addr[1], data))
+print(r'从ip地址{}端口{}接收到了消息，内容是：{}'.format(addr[0], addr[1], data))
 
 # 4.关闭连接
 recSocket.close()
