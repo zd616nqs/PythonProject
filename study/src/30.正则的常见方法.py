@@ -214,7 +214,7 @@ num = input('请输入ip地址:')
 regexStr = r"((\d|[1-9]\d|1\d{2}|2([0-4]\d|5[0-5]))\.){3}(\d|[1-9]\d|1\d{2}|2([0-4]\d|5[0-5]))"
 correctResult11 = re.fullmatch(regexStr, num)
 print('correctResult: ', correctResult11) 
-# correctResult:  <re.Match object; span=(0, 12), match='192.234.23.2'>
+# correctResult11:  <re.Match object; span=(0, 12), match='192.234.23.2'>
 
 
 # 拆解：
@@ -223,3 +223,4 @@ totalRegxStr = "(" + singAreaRegx + "\.){3}" + singAreaRegx
 print('totalRegxStr: ', totalRegxStr)
 correctResult22 = re.fullmatch(totalRegxStr, num)
 print('correctResult22: ', correctResult22)
+# correctResult22:  <re.Match object; span=(0, 12), match='192.234.23.2'>
