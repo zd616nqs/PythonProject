@@ -30,8 +30,12 @@ recSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 recSocket.bind('192.168.199.673', 9090)
 
 # 3.接收内容(接收到的数据是元组，第0个是接收到的数据，第1个是发送方的ip地址和端口号)
-recvConent = recSocket.accept()
+data, addr = recSocket.recvfrom(1024) # buffersize为1024
+# data= recSocket.recvfrom(1024)[0] 
+# addr = recSocket.recvfrom(1024)[1] 
+
 # b'\xe4\xb8\x8b\xe5\x8d\x88\xe5\xa5\xbd',('192.168.199.11', 60737)
+print('从ip地址{}端口{}接收到了消息，内容是：{}'.format(addr[0], addr[1], data))
 
 # 4.关闭连接
 recSocket.close()
