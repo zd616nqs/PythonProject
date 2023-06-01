@@ -105,7 +105,7 @@ while True:
     passWord = input("请输入密码：")
 
 
-# -----for...else...-----
+# -----for in...else...-----
 # 当for循环内的break没有执行时，会执行else
 for temp in range(1, 101):
     if temp == 200:
@@ -122,7 +122,12 @@ for temp in range(100, 1000):
     baiwei = temp // 100 % 10
     if ((gewei ** 3) + (shiwei ** 3) + (baiwei ** 3) == temp):
         print("水仙花数：", temp)
-
+'''  
+水仙花数： 153
+水仙花数： 370
+水仙花数： 371
+水仙花数： 407
+'''
 
 # 练习 取100~200内的质数（除了1和自身以外没有可以整除的数）
 print("获取100-200内的质数：")
@@ -134,6 +139,7 @@ for temp in range(100, 201):
     else:
         print(temp, end=" ")
 print()
+# 101 103 107 109 113 127 131 137 139 149 151 157 163 167 173 179 181 191 193 197 199 
         
 
 # 练习 求斐波那契数的第十二个数
@@ -157,5 +163,7 @@ for temp in range(0, 20):
     if findTarget:
         targetNum = currentNum
 print()
+# 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 
 if (targetNum > 0): 
     print("第12个斐波那契数字是：", targetNum)
+    # 第12个斐波那契数字是： 233

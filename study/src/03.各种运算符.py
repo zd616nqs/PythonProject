@@ -75,14 +75,12 @@ print("b" > "a")    # 结果：True
 print("abc" > "c")  # 结果：False
 print("abc" > "a")  # 结果：True
 
-# 注意：int和str进行==计算时，不会比较编码值，统一结果False
+# 注意1：int和str进行==计算时，不会比较编码值，统一结果False
+# 注意2：int和str进行!=计算时，不会比较编码值，统一结果True
+# 注意3：int和str类型不能进行大小比较
 print("a" == 97)  # 结果：False  
 print("a" == 90)  # 结果：False
-
-# 注意：int和str进行!=计算时，不会比较编码值，统一结果True
 print("a" != 97)  # 结果：True
-
-# 注意：int和str类型不能进行大小比较
 # print("a" > 90) # 报错
 
 

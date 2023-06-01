@@ -7,12 +7,13 @@ word2 = """小红说:"我是女生" """
 print(word1, "  ", word2)  # 结果：小明说:"我是男生"    小红说:"我是女生" 
 
 # 使用转义字符
-# \'   \"   \\
+# \' 和  \"  和  \\
 word3 = 'I\'m Niuqingshan'
 word4 = "I am:\"linlin\""
 word5 = "good mor\\ning"
 print(word3, "  ", word4)  # 结果：I'm Niuqingshan    I am:"linlin"
 print(word5)              # 结果：good mor\ning
+
 
 # 在字符串前面加r，在python里表示的是原生字符串，防止字符串内有转义字符的情况
 # 注意：大小写R\r都可以
@@ -41,20 +42,22 @@ print(name[:3])     # 结果：niu         （会从头截取）
 print(name[::])     # 结果：niuqingshan （从头到尾复制）
 print(name[::-1])   # 结果：nahsgniquin （倒序）
 # start和end为负数时，表示从右边开始数
-print(name[-8:-4])  # 结果：qing （从右数第7开始，到从右数第4结束，从左到右打印）
+print(name[-8:-4])      # 结果：qing （从右数第7位到从右数第4位，从左至右打印）
+print(name[-5:-9:-1])   # 结果：gniq （从右数第5位到从右数第8位，从右至左打印）
+print(name[-9:-5:-1])   # 结果：空输出，start和end位置不对
 
 
 
 # ----------------字符串查找操作------------------
 # 常见的方法： find、index、rfind、rindex
 # rfind rindex 查找顺序从右向左
-name222 = 'niuqingshan'
-print(name222.find("qi")) # 结果：3
-print(name222.find("mama")) # 结果：-1
-print(name222.index("qi")) # 结果：3
+name222 = 'niuqingqingshan'
+print(name222.find("qi"))      # 结果：3
+print(name222.find("mama"))    # 结果：-1
+print(name222.index("qi"))     # 结果：3
 # print(name222.index("mama")) # 结果：没有找到，会报错
-print(name222.rfind("qi")) # 结果：3
-print(name222.rindex("qi")) # 结果：3
+print(name222.rfind("qi"))     # 结果：7
+print(name222.rindex("qi"))    # 结果：7
 
 
 
@@ -64,6 +67,8 @@ print(name222.rindex("qi")) # 结果：3
 # isalnum 是否只有数字+字母(不能有其他类型的字符)
 # isspace 是否全部由空格组成
 # count 关键字出现了几次
+# startswith 是否以某关键字开始
+# endswith   是否以某关键字结束
 name333 = 'niuqingshan'
 print(name333.startswith('niu'))  # 结果：True
 print(name333.endswith('shan'))   # 结果：True
