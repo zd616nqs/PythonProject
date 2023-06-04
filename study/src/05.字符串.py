@@ -15,12 +15,6 @@ print(word3, "  ", word4)  # 结果：I'm Niuqingshan    I am:"linlin"
 print(word5)              # 结果：good mor\ning
 
 
-# 在字符串前面加r，在python里表示的是原生字符串，防止字符串内有转义字符的情况
-# 注意：大小写R\r都可以
-word6 = "good af\ternoon"  # 结果：good af ernoon 
-word7 = r"good af\ternoon" # 结果：good af\ternoon
-print(word6, "\n", word7)
-
 
 
 
@@ -165,6 +159,8 @@ age111 = 22
 money = 999.987
 print('大家好，我叫%s，今年%d岁了，挣了%.2f钱' % (name888, age111, money))
 # 结果：大家好，我叫张三，今年22岁了，挣了999.99钱
+print('当前时间:%02d:%02d:%02d' % (13, 8, 55))
+# 当前时间:13:08:55
 
 # ----方式2----
 # 使用{}占位，就可以不考虑变量的类型
@@ -192,3 +188,21 @@ print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(*listData))
 dictData = {"name": "青青", "age": 22, "money": 66666}
 print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(dictData['name'], dictData['age'], dictData['money'])) 
 print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format(**dictData)) 
+
+# ----方式6------
+# 在字符串前面加r，在python里表示的是原生字符串，防止字符串内有转义字符的情况
+# 注意：大小写R\r都可以
+word6 = "good af\ternoon"  # 结果：good af ernoon 
+word7 = r"good af\ternoon" # 结果：good af\ternoon
+print(word6, "\n", word7)
+
+# 在字符串前面加f或者F，可以直接使用变量名
+testStr1 = '牛牛'
+testStr2 = '泰山'
+print(f'姓名:{testStr1},去{testStr2}旅游') # 姓名:牛牛,去泰山旅游
+
+# rf或者fr混合使用，等效
+print(rf'good af\ternoon 姓名：{testStr1},去{testStr2}旅游') 
+print(fr'good af\ternoon 姓名：{testStr1},去{testStr2}旅游') 
+# good af\ternoon 姓名：牛牛,去泰山旅游
+# good af\ternoon 姓名：牛牛,去泰山旅游

@@ -27,7 +27,6 @@ print("斐波那契数列：", end="")
 
 
 def fibonacci_func(index, lastNum):
-    global targetMaxIndex
     global currentNum
     
     if index == 0:
@@ -91,7 +90,7 @@ print("\n")
 # min：最小值
 # round：四舍五入，保留到指定小数位
 # sum：求和
-# divmod：传入除数和被除数，返回商和余数
+# divmod：传入除数和被除数，返回商和余数(元组形式)
 print(list(divmod(22, 7)))  # [3, 1]
 # abs：绝对值
 print('abs: ', abs(-10))  # abs:  10

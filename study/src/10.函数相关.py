@@ -51,6 +51,9 @@ print('\n')
 # https://blog.csdn.net/ammmao/article/details/89527349
 # https://blog.csdn.net/qq_39246147/article/details/129157112
 
+
+
+
 # ----函数的缺省参数----
 print('-----函数的缺省参数--------')
 def testDefaultParaMethod(name, age, location='郑州'):
@@ -100,22 +103,40 @@ print('\n')
 print('-----局部变量和全局变量的作用域--------')
 # 在python内，全局变量和局部变量可以同名！！各是各的，不会相互影响。但是还是尽量避免同名
 # 如果想在函数内修改全局变量的值，使用global关键字
-# nonlocal和global的区别
+
+# ---nonlocal和global的区别:----
+# 1.nonlocal: 
+#   1.1 在内层可以将外层变量看做本地变量，赋予了内层函数对外层函数变量的修改权
+#   1.2 必须定义在闭包内，即nonlocal的使用上层不能是主体，上层必须是在某一层的def内。
+#   1.3 定义的变量不仅在嵌套的inner函数内生效，在整个大函数里面都有效
+# 2.global:
+#   2.1将变量声明为全局变量，使内部变量能够被外部访问，同时也实现了在函数内部改变变量值，变相的把外部变量引进函数内部了
+#   2.2 整个代码环境内都有效
+
+# 参考说明：
 # https://blog.csdn.net/weixin_43439761/article/details/127869277
+# https://zhuanlan.zhihu.com/p/467568306
+# https://blog.csdn.net/jhsxy2005/article/details/107451737
+
 aaa = 100
 bbb = 'hello'
 
 def tempfunc111():
     aaa = 999
     print('局部变量aaa: ', aaa)  # 结果：局部变量aaa:  999
+    
     global bbb
+    print('局部变量bbb修改前: ', bbb) # hello
     bbb = 'world'
-    print('局部变量bbb: ', bbb)  # 结果：局部变量bbb:  world
-tempfunc111()
+    print('局部变量bbb修改后: ', bbb)  # world
 
 print('全局变量aaa: ', aaa)  # 结果：全局变量aaa:  100
 print('全局变量bbb: ', bbb)  # 结果：全局变量bbb:  world
 print('\n')
+
+
+
+
 
 # ----查看变量----
 print('-----查看变量--------')

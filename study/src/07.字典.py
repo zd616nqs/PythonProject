@@ -75,8 +75,11 @@ for temp in person555.values():
     
 # 拿到所有的键值对(键值对以元组形式表示)
 for temp in person555.items():
-    print('x={}'.format(temp))                         # 依次打印：('name', '牛牛')     ('age', 18)        ('gender', '男')
-    print('key={},value={}'.format(temp[0], temp[1]))  # 依次打出：key=age,value=18    key=age,value=18   key=gender,value=男
+    print('x={}'.format(temp))                         
+    # 依次打印：('name', '牛牛')     ('age', 18)        ('gender', '男')
+    print('key={},value={}'.format(temp[0], temp[1]))  
+    # 依次打出：key=age,value=18    key=age,value=18   key=gender,value=男
+
 # items取元组的另外一种写法
 for (xxx, yyy) in person555.items():
     print('key={},value={}'.format(xxx, yyy))          # 依次打出：key=age,value=18    key=age,value=18   key=gender,value=男

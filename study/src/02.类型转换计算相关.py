@@ -54,3 +54,16 @@ print(bool("hello"))      # True
 print(bool("False"))      # True
 print(bool(""), bool('')) # False False
 print(bool(None))         # False
+
+# ------bool转其他类型------
+print("---------")
+print(str(True) == "True")   # True
+print(str(False) == "False") # True
+print(int(True))    # 1
+print(int(False))   # 0
+print(float(True))  # 1.0
+print(float(False)) # 0.0
+print(10 + True)    # 11
+print(10 + False)   # 10
+print(10 * True)    # 10
+print(10 * False)   # 0

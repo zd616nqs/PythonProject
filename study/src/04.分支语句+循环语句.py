@@ -42,6 +42,9 @@ print("你好1111")
 
 
 # 随机数
+# random.random() ==> [0.0, 1.0]
+# random.randint(a, b) ==> [10, 100]
+# random.randrange(start, end, step) ==> [10, 100, 2]
 player = random.randint(0, 3)  # 随机数[0,3]
 print("随机数:" + str(player))
 

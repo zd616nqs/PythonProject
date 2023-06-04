@@ -31,7 +31,10 @@ def outerMethod():
 outerMethod()()
 
 # nonlocal和global的区别
+# 参考说明：
 # https://blog.csdn.net/weixin_43439761/article/details/127869277
+# https://zhuanlan.zhihu.com/p/467568306
+# https://blog.csdn.net/jhsxy2005/article/details/107451737
 
 
 
