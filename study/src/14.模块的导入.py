@@ -36,7 +36,7 @@ from nqs_module.file1 import testFunc
 本质是读取了模块的__all__属性(不会读取_下划线开头的变量和方法)
     举例：定义个模块文件：
     
-    文件内容：nqs_module.py
+    文件内容：nqs_module.py：
         __all__ = ['testVarNqs111', 'testDemoFunc111']
         testVarNqs111 = 100
         testVarNqs222 = 200
@@ -84,10 +84,10 @@ class CustomPerson(object):
         print(self.name + '正在吃' + foodName)
 
 p = CustomPerson('牛牛')
-eat = p.eat  # 起别名
+eat_haha = p.eat  # 起别名
 
 # import 当前模块文件名
-# 当前模块文件名.eat('西红柿鸡蛋')   #打印：牛牛正在吃西红柿鸡蛋
+# 当前模块文件名.eat_haha('西红柿鸡蛋')   #打印：牛牛正在吃西红柿鸡蛋
 
 
 # ------------__init__.py介绍-----------

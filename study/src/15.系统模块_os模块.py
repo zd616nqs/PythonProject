@@ -16,7 +16,7 @@ import os
 
 
 #######################################################################
-# 讨论："python xxx.py"显示调用的前提下，存在引用依赖和不存在引用依赖的值是否一样
+# 讨论："python xxx.py"显式调用的前提下，存在引用依赖和不存在引用依赖的值是否一样
 #######################################################################
 # --------情况1：运行单独文件，没有引用关系的情况-------
 # 1.目录结构：
@@ -94,6 +94,7 @@ __file__
 # ---------延伸------
 # 在项目中发现判断 if __name__ = '__main_-': 时，
 # 作用就是判断当前文件是否是直接调用的还是被其他文件调用的
+# 思考：正因为打印__main__在不同的调用场景结果不同，所以可以用来反向判断是怎么开始执行的
 
 
 
@@ -114,7 +115,7 @@ print('os.sep: ', os.sep)  # os.sep:  /
 print('os.getcwd(): ', os.getcwd())  # /Users/jeason/Downloads/project/Study/PythonProject/study
 print()
 
-# TODO:以下打印结果都是IDE环境执行结果  ./demo.py方式不通用
+# TODO:以下打印结果都是IDE环境执行结果     备注：./demo.py直接运行脚本方式不适用，结果可能不同
 # 4..绝对路径和相对路径
 print(os.path.abspath(__file__))                           # /Users/jeason/Downloads/project/Study/PythonProject/study/src/14.模块的使用.py
 print(os.path.realpath(__file__))                          # /Users/jeason/Downloads/project/Study/PythonProject/study/src/14.模块的使用.py
@@ -166,8 +167,8 @@ print()
 # os.removedirs("projectDir/demoDir/demo.txt")  # 从内向外递归删除文件夹
 # os.mkdir('newDemoDir')   # 创建文件夹
 # os.listdir("/Users/jeason/Downloads/project/Study/PythonProject/study") # 列出指定目录里的所有文件和文件夹
-# os.environ['HOME']       # 获取到环境配置(macOS设置 environ 可能导致内存泄漏)
-# os.putenv("PATH")        # 获取指定的环境变量(macOS设置 environ 可能导致内存泄漏)
+# os.environ['HOME']       # 获取到环境配置     (注意：在macOS系统下，修改或设置environ内参数名或参数值，可能导致内存泄漏)
+# os.putenv("PATH")        # 获取指定的环境变量  (注意：在macOS系统下，修改或设置environ内参数名或参数值，可能导致内存泄漏)
 
 # 设置系统环境变量
 #   os.environ[‘环境变量名称’]=‘环境变量值’ #其中key和value均为string类型
