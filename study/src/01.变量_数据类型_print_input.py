@@ -34,3 +34,16 @@ print("123456")
 # input 输入函数(注意：保存的结果都是字符串类型)
 password = input("请输入您的银行卡密码：")
 print("已输入密码：" + password)
+
+
+
+# 声明类型 单个或多个类型（挡不住强行赋值，就有个提示的作用）
+
+nqs: str = "lkjkl"
+
+para: str | int | float
+para = "sdkjlk"
+para = 33
+para = 5.5
+para = [33, 22]  # 没卵用，还是会赋值成功
+print(para)

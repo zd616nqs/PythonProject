@@ -118,13 +118,13 @@ print('返回值result44={}'.format(result44))  # 返回值result44=88800
 
 # 最复杂场景：多个入参、多个返回
 def can_play(temp_func):
-    def inner(temp_name, temp_game, *args, **krargs):
+    def inner(temp_name, temp_game, *args, **kwargs):
         temp_func(temp_name, temp_game)
         
         age = -1
         game_time = -1
-        age = krargs.get('age')
-        game_time = krargs.get('clock')
+        age = kwargs.get('age')
+        game_time = kwargs.get('clock')
         print('年龄:{}, 时间:{}'.format(age, game_time), end="-- ")
         
         if age is None:
@@ -159,9 +159,18 @@ play_game('孙七', '英雄联盟', age=20, clock=23)
 finalResult = play_game('周八', '英雄联盟', age=30, clock=15)
 print(finalResult)  # (30, 15)
 
+# **kwargs 本质上就是把参数转换成字典传递给内部，所以可以直接传个字典进去
+apply_condition = {
+    "age": 28,
+    "clock": 13
+}
+finalResult22 = play_game('牛牛', '守望先锋', **apply_condition)
+print(finalResult22) # (28, 13)
+
 # --张三想玩英雄联盟--  年龄:None, 时间:None-- 非法！！请输入用户年龄！
 # --李四想玩英雄联盟--  年龄:15, 时间:None-- 非法！！请输入游戏时间！
 # --王五想玩英雄联盟--  年龄:None, 时间:21-- 非法！！请输入用户年龄！
 # --赵六想玩英雄联盟--  年龄:11, 时间:21-- 未成年，不能游戏
 # --孙七想玩英雄联盟--  年龄:20, 时间:23-- 已成年 太晚了，睡觉把
 # --周八想玩英雄联盟--  年龄:30, 时间:15-- 已成年 时间合理，可以进行游戏
+# --牛牛想玩守望先锋--  年龄:28, 时间:13-- 已成年 时间合理，可以进行游戏

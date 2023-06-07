@@ -45,6 +45,7 @@ print(name[-9:-5:-1])   # 结果：空输出，start和end位置不对
 # ----------------字符串查找操作------------------
 # 常见的方法： find、index、rfind、rindex
 # rfind rindex 查找顺序从右向左
+# 参数：s.index(x, start, end)
 name222 = 'niuqingqingshan'
 print(name222.find("qi"))      # 结果：3
 print(name222.find("mama"))    # 结果：-1
@@ -90,6 +91,26 @@ print(name555.capitalize())  # 结果：Niu qing shan
 print(name555.upper())       # 结果：NIU QING SHAN
 print(name555.lower())       # 结果：niu qing shan
 print(name555.title())       # 结果：Niu Qing Shan
+
+
+# ----------------字符串用0填充----------------------
+# s.zfill(x) 用字符0填充到s的左边，直到字符串长度达到x
+name1992 = "niu".zfill(10)
+print(f'name1992:{name1992}')  # name1992:0000000niu
+
+name1993 = "+$#!niu".zfill(10)
+print(f'name1993:{name1993}') # name1993:+000$#!niu
+
+name1994 = "+$#!niu".zfill(2)
+print(f'name1994:{name1994}') # name1994:+$#!niu
+
+
+# ----------------字符串删除前缀后缀----------------------
+nqs1992 = "www.baidu.com"
+nqs1993 = nqs1992.removeprefix("www")
+nqs1994 = nqs1993.removesuffix("com")
+print('nqs1994: ', nqs1994)  # .baidu.
+
 
 
 # ----------------字符串空格处理----------------------
@@ -188,6 +209,8 @@ print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(*listData))
 dictData = {"name": "青青", "age": 22, "money": 66666}
 print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(dictData['name'], dictData['age'], dictData['money'])) 
 print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format(**dictData)) 
+# 使用format_map 遍历字典
+print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format_map(dictData)) 
 
 # ----方式6------
 # 在字符串前面加r，在python里表示的是原生字符串，防止字符串内有转义字符的情况

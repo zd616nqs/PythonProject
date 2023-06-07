@@ -13,13 +13,21 @@ print('total: ', total)  # 结果：total:  {1, 2, 3, 4, 5, 6}
 
 # 添加一个元素
 testSet.add('哈哈哈')
-print('testSet: ', testSet)
+print('testSet: ', testSet) # testSet:  {'niu', 'qing', 'shan'}
 
-# 删除一个元素 pop、remove
-testSet.pop()         # 随机删掉一个元素
-print('testSet: ', testSet)
-# testSet.remove('66666')  # 删除一个指定的元素(元素不存在时会报错)
-# print('testSet: ', testSet)
+# 删除一个元素 pop、remove、discard
+# 1.pop     随机删掉一个元素
+# 2.remove  删除一个指定的元素(元素不存在时会报错)
+# 3.discard 删除一个指定元素(元素不存在不会报错)
+testSet.pop()         
+print('testSet111: ', testSet) # testSet111:  {'qing', '哈哈哈', 'shan'}
+
+# testSet.remove('66666') 
+
+testSet.discard('哈哈哈')
+print('testSet333: ', testSet) # testSet333:  {'qing', 'shan'}
+
+
 
 
 # union：a.union(b) 将集合a和b取并集，返回一个新的集合
@@ -60,3 +68,12 @@ print(ccc | ddd)  # 结果：{'222', '888', '111', '777'}
 
 # ^：异或(并集去除交集部分)
 print(ccc ^ ddd)  # 结果：{'888', '111', '777'}
+
+
+# ------------集合的推导式---------
+ss1 = {i * 11 for i in range(1, 6)}
+print(ss1) # {33, 11, 44, 22, 55}
+
+names = ['张三', '李四', '王五', '赵六']
+ss2 = {name[0] for name in names}
+print(ss2) # {'李', '张', '赵', '王'}

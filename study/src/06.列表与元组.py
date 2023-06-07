@@ -1,4 +1,5 @@
 import copy
+import random
 # ------------------列表的基本使用-------------
 names111 = ['牛', '青', '山', '到', '次', '一', '游']
 
@@ -13,13 +14,21 @@ print(names111[1:3])  # 结果：['青', '山']
 
 
 # -----增删改查------
+# 0.使用+= *= 拼接两个列表的情况
+s1 = [11, 22]
+s2 = [33, 44]
+# s1+=s2等效于s1=s1+s2,但是+=不会产生新的对象，效率高省内存
+# s1*=s2等效于s1=s1*s2,但是*=不会产生新的对象，效率高省内存
+
 # 1.添加数组元素 append、insert、extend
 names444 = ['牛', '青', '山', '到', '次', '一', '游']
 # *****添加：append(字符串)*****
 names444.append('append')
 print(names444)  # 结果：['牛', '青', '山', '到', '次', '一', '游', 'append']
 
+
 # *****插入：insert(下标, 字符串)*****
+# index如果特别大比如999,效果就是往列表后面append一个元素
 names444.insert(1, 'insert')
 print(names444)  # 结果：['牛', 'insert', '青', '山', '到', '次', '一', '游', 'append']
 
@@ -28,6 +37,30 @@ names444.extend(['扩展1', '扩展2'])
 print(names444)  # 结果：['牛', 'insert', '青', '山', '到', '次', '一', '游', 'append', '扩展1', '扩展2']
 # 注意：其实也可以直接使用+拼接
 print([1, 2, 3] + [7, 8, 9])  # 结果：[1, 2, 3, 7, 8, 9]
+
+# *****修改范围的数据*******
+# -----切片step为默认值1时，切片数跟替换的数据数量不用一致-----
+sss = [0, 1, 2, 3, 4, 5, 6]
+
+sss[1:3] = [111, 222]
+print(sss) 
+# [0, 111, 222, 3, 4, 5, 6]
+sss[1:3] = [111111, 222222, 333333, 444444]
+print(sss)
+# [0, 111111, 222222, 333333, 444444, 3, 4, 5, 6]
+sss[1:3] = [999]
+print(sss)
+# [0, 999, 333333, 444444, 3, 4, 5, 6]
+
+# ----切片step为大于默认值时，切片数跟替换的数据数量必须一致---
+mmm = [0, 1, 2, 3, 4, 5, 6]
+mmm[1::2] = [111, 222, 333]
+# mmm[1::2] = [111, 222, 333, 444]  切片数量跟数据数量对不上，会报错
+# mmm[1::2] = [111, 222]            切片数量跟数据数量对不上，会报错
+print(mmm)
+# [0, 111, 2, 222, 4, 333, 6]
+
+
 
 
 # 2.删除数组元素 pop、remove、clear
@@ -53,9 +86,16 @@ names666 = ['牛', '青', '山']
 del names666[1]
 print(names666)  # 结果：['牛', '山']
 
+del names666[:]  # 清空所有
 
 
-# 3.查询数组元素 index、count、in、not in
+
+# 3.查询数组元素 index、rindex(从右向左)、find、rfind(从右向左)、count、in、not in
+# index和find参数的使用方法一样
+# index和find的唯一区别是，在找不到元素时,find方法会返回-1，index方法会报错
+# s.index(x)             在s中搜索字符串x的下标，从左往右搜索
+# s.index(x,start)       搜索范围：[start, len(s)]
+# s.index(x, start, end) 搜索范围：[start, end)
 names777 = ['牛', '青', '山', '到', '次', '一', '游']
 print(names777.index('青'))  # 结果：1
 print(names777.count('青'))  # 结果：1
@@ -64,6 +104,7 @@ print('山' not in names777)  # 结果：False
 # 注意：取数组的最后一个元素的快捷写法
 names777[-1]
 print(names777[-1])  # 结果：游
+
 
 
 # 4.修改数组元素
@@ -202,6 +243,13 @@ print('testArr: ', testArr)  # 结果：testArr:  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 # for i in range(10):
 #     testArr.append(i)
 
+# 打印10个数，每个数的值是0~5内随机出来的
+testArr000 = [random.randrange(5) for _ in range(10)]
+print('testArr000: ', testArr000)  # [3, 0, 2, 3, 1, 4, 4, 1, 3, 4]
+
+testArr_test = [0 for _ in range(10)]
+print('testArr_test: ', testArr_test)  # testArr_test:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
 # 还能添加if继续写
 testArr222 = [i for i in range(10) if i % 2 == 0]
 print('testArr222: ', testArr222)  # 结果：testArr222:  [0, 2, 4, 6, 8]
@@ -224,10 +272,12 @@ print('demoArr999: ', demoArr999)
 
 
 # ------------------元组------------------
-# 元组是不可变类型、列表是可变类型
+# 元组是不可变类型，数据相对更安全，资源消耗也更低
+# 备忘：列表是可变类型
 # 元组是有序的存储容器，可以通过下标取值
 # 如果元组里只有一个元素，需要在最后加一个,号 num = (673,)
-# 常用方法：tuple.index(2)  tuple.count()
+# 可以使用的方法：tuple.index(2)  tuple.count()
+# 不能使用的方法：append、insert、extend、pop、remove、clear
 
 
 # 列表和元组相互转换
@@ -235,6 +285,9 @@ tuple111 = (1, 2, 3, 4)
 list111 = [5, 6, 7, 8]
 print(list(tuple111))  # 结果：[1, 2, 3, 4]
 print(tuple(list111))  # 结果：(5, 6, 7, 8)
+# 注意只有一个元素的元组记得加,号
+# 错误：t1 = (55) 打印值是int类型，完全等价于t1 = 55
+# 正确：t1 = (55,)
 
 # 元组转字符串
 tuple222 = ('178', '18', '666')
@@ -256,3 +309,28 @@ print((1, 2, 3) + (7, 8, 9))  # 结果：(1, 2, 3, 7, 8, 9)
 tuple333 = (5, 3, 1, 4)
 sortNewList = sorted(tuple333)  # 返回一个新的排序过的列表
 print('sortNewList: ', sortNewList)  # 结果:sortNewArr:  [1, 3, 4, 5]
+
+# 元组的解包
+nqs_name, nqs_age, nqs_gender = ('牛青山', 30, '男')
+
+
+aaaaa = [11, 22, 33, 44, 55]
+for index, ele in enumerate(aaaaa):
+    print(index, ele)
+''' 
+0 11
+1 22
+2 33
+3 44
+4 55
+'''
+    
+for eleTuple in enumerate(aaaaa):
+    print(eleTuple)
+'''  
+(0, 11)
+(1, 22)
+(2, 33)
+(3, 44)
+(4, 55)
+'''

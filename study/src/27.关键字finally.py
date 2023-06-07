@@ -10,6 +10,14 @@ try:
         num += 1
 finally: # 最终都会执行的代码
     print('全部执行结束111')
+''' 
+1
+2
+3
+4
+...
+全部执行结束111
+'''
 
 
 # ------如果函数内有finally的情况------
@@ -18,7 +26,7 @@ def demoFunc(a, b):
     try:
         result = a / b
     except Exception as e:
-        print('程序出错了,原因：', e)  # 程序出错了,原因： division by zero
+        print('程序出错了,原因：', e)  
         return '错误了'
     else:
         print('计算结果是：', result)
@@ -27,5 +35,8 @@ def demoFunc(a, b):
         return 'nqs'
     
 xx = demoFunc(5, 0)
-print('xx: ', xx) # xx:  nqs
+print('xx: ', xx) 
+
+# 程序出错了,原因： division by zero
+# xx:  nqs
 

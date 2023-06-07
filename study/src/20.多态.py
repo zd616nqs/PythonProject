@@ -30,6 +30,11 @@ ss.sleep()
 # 牛牛正在睡觉
 # 同时也在打呼噜
 
+# 如果子类重写了父类方法，强制调用父类的方法
+# 方式1：cls.__base__.obj_method(obj, 参数)
+# 方式2：super(cls, obj).obj_method(参数)
+
+
 
 
 # -----多态的使用-------
@@ -74,3 +79,23 @@ police.work_with_dog() # 警犬正在工作
 
 police.dog = dog3
 police.work_with_dog() # 缉毒犬正在工作
+
+
+
+
+
+# --------------多继承(容易出错，尽量不使用)---------
+class Camera:
+    def take_photo(self):
+        print('拍照片')
+        
+class Player:
+    def play_movie(self):
+        print('放电影')
+
+class Phone(Camera, Player):
+    pass
+
+nnPhone = Phone()
+nnPhone.take_photo() # 拍照片
+nnPhone.play_movie() # 放电影

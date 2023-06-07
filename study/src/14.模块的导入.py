@@ -27,10 +27,13 @@ nqs_dp([1, 2, 3])
 5.导入一个模块内某个文件的变量或方法
 from nqs_module.file1 import testFunc
 
+6. 导入一个模块的多个方法
+from nqs_module import (test1, test2, test3)
+
 '''
 
 
-# 6.导入一个模块内的所有方法和变量(尽量少用,代码看着会很乱)
+# 7.导入一个模块内的所有方法和变量(尽量少用,代码看着会很乱)
 # from math import *           
 ''' 
 本质是读取了模块的__all__属性(不会读取_下划线开头的变量和方法)

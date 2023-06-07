@@ -65,6 +65,42 @@ coco111._Coco__demo()  # 我是私有函数__demo
 
 
 
+# -------设置属性或方法的不可见，前面添加两个下划线就不能被调用了-------
+# 备注：如果__xxx__前后都加双下划线，就又变成对外可见了
+# 原理：底层被改成了：_类名__属性名，但是不能用这种格式打印
+class TestUnsee(object):
+    def __init__(self) -> None:
+        self.__name = "牛牛"
+        self.__age = 12
+        
+    def __sleep(self):
+        print('睡觉')
+testunsee = TestUnsee()
+# print(testunsee.__name)  # 会报错，两个下划线代表属性不可见，不能强行调用
+# testunsee.__sleep()      # 会报错
+
+
+
+
+# -------------使用@property声明 变相控制getter、setter方法-------
+# @property装饰器就是负责把一个方法变成属性调用的
+# 参考链接：https://www.tianqiweiqi.com/python-property.html
+class LizhiCat(object):
+    def __init__(self) -> None:
+        self.__age = 0
+    
+    @property
+    def tempage(self):
+        return self.__age
+    
+    @tempage.setter
+    def tempage(self, age):
+        self.__age = age
+
+lizhi = LizhiCat()
+lizhi.tempage = 3
+print(lizhi.tempage) # 3
+
 
 
 
@@ -76,18 +112,21 @@ class Dog(object):
         self.age = age
         
     # 1.实例方法，类调用和实例对象 都可以调用，实例对象调用时不用传self
+    # 使用场景：方法的执行者是 实例对象
     def eat(self, food):
         print(self.name + '在吃' + food)
         
     # 2.一个方法没有用到任何实例对象(即self),可以使用staticmethod定义为静态方法
+    # 使用场景：方法的执行者不要求是实例对象、没必要多此一举实例化对象的时候
     @staticmethod
     def run():
         print('这是一个狗狗')
     
     # 3.一个方法只用到了类cls属性，使用clsasmethod定义，不用手动传入cls(类比不用手动传入self)
+    # 使用场景：方法的执行者不要求是实例对象、没必要多此一举实例化对象的时候
     @classmethod
     def jump(cls):
-        print(cls,)
+        print(cls)
 
 
 # 1.调用实例方法：类调用和实例对象 都可以调用

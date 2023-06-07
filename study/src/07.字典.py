@@ -11,6 +11,8 @@ person = {
 print(person)  # 结果：{'name': '牛轻松', 'age': 18, 'height': 176, 'gender': 'male', 'hobbies': ['唱', '跳', '篮球', 'rap'], 666: 'good', ('1', '2', '3'): 'hello'}
 
 
+# 注意：从python3.7开始，字典内key的添加顺序和遍历顺序是一样的
+
 # ---------------字典的增删改查---------------
 
 # ----查询----
@@ -37,15 +39,17 @@ print('person222: ', person222)
 # 结果：person222:  {'name': '你牛', 'age': 18, 'gender': '女'}
 
 # 3.删除
-# pop 删除指定的一个key
-person222.pop('name') 
+# pop 删除指定的一个key，并返回对应的value (key不存在时会报错)
+popvalue = person222.pop('name') 
+print('popvalue: ', popvalue)  # 你牛
 print('person222: ', person222)  # 结果：person222:  {'age': 18, 'gender': '女'}
 
-# popitem 随机删除一个key，并且以元组的形式返回删除的key/value键值对
+# popitem 删除一个key，并且以元组的形式返回删除的key/value键值对
+# 删除的顺序，跟遍历的顺序相反
 xxx = person222.popitem()   
 print('xxx: ', xxx)  # 结果：xxx:  ('gender', '女')
 
-# 使用del关键词删除
+# 使用del关键词删除(key不存在时会报错)
 del person222['age']
 print('person222: ', person222)  # 结果：person222:  {}
 

@@ -3,7 +3,9 @@
 def div(a, b):
     return a / b
 
-
+# 执行逻辑：
+# try->有异常？->无->else->finally
+#             ->有->except->finally
 
 # ------------常规系统异常处理方式--------------------
 # 使用try...except语句处理异常，出现异常立马跳转到except内
@@ -15,6 +17,19 @@ except Exception as e:
     print('程序出错了,原因：', e)  # 程序出错了,原因： division by zero
 else:
     print('计算结果是：', result)
+finally:
+    print('结束111')
+
+''' 
+情况：div(5, 0)
+    程序出错了,原因： division by zero
+    结束111
+情况：div(5, 2)
+    此行看看打不打印
+    计算结果是： 2.5
+    结束111
+'''
+
 
 
 
@@ -35,6 +50,22 @@ except (ZeroDivisionError, FileNotFoundError) as e:
 
 
 
+# except可以分开多个写
+'''  
+try:
+    a > b
+except ZeroDivisionError:
+    pass
+except FileNotFoundError:
+    pass
+except:
+    print('其他的所有类型异常')
+finally:
+    pass
+'''
+
+
+
 
 
 # ---------------自定义异常类型--------------------
@@ -48,6 +79,7 @@ except (ZeroDivisionError, FileNotFoundError) as e:
 
 
 # -----抛出一个自定义类型的异常-----
+# 懒得自定义error,就使用 raise ValueError("此处错误，不能xxxxx")
 class NQSError(Exception):
     def __init__(self, x, y) -> None:
         self.x = x

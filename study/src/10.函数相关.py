@@ -34,6 +34,12 @@ testReturnResult = addExample222(3, 4)
 print('testReturnResult: ', testReturnResult)  # 结果：testReturnResult:  (3, 4)
 print('\n')
 
+# ----声明返回值的类型-------
+def addExample333(para1, para2) -> list:
+    templist = []
+    templist.append(para1)
+    templist.append(para2)
+    return templist
 
 
 
@@ -89,11 +95,30 @@ dynamicParasMethod111(1, 2, 3, 4, 5, 6, 7)  # a=1, b=2, args=(3, 4, 5, 6, 7)
 # **kwargs 允许你将不定长度的键值对, 作为参数传递给一个函数。 
 # 如果你想要在一个函数里处理带名字的参数, 你应该使用**kwargs。比如：a=10。
 # 保存形式：字典
+# **krargs 本质上就是把参数转换成字典传递给内部，所以可以直接传个字典进去
+
 def dynamicParasMethod222(a, b, **nqs_kwargs):
     print('a={}, b={}, args={}'.format(a, b, nqs_kwargs))
-# dynamicParasMethod222(1, 2, 3, 4)            # 会报错，没有显式声明3和4对应的变量名
-dynamicParasMethod222(1, 2, mm=3, nn=4)        # a=1, b=2, args={'mm': 3, 'nn': 4}
+# dynamicParasMethod222(1, 2, 3, 4)                # 会报错，没有显式声明3和4对应的变量名
+dynamicParasMethod222(1, 2, mm=3, nn=4)            # a=1, b=2, args={'mm': 3, 'nn': 4}
+dynamicParasMethod222(1, 2, **{'mm': 3, 'nn': 4})  # a=1, b=2, args={'mm': 3, 'nn': 4}
+
 print('\n')
+
+
+
+# --------------强制使用关键字参数-----------
+# 方式：在定义参数时，在希望声明关键字的第n个参数开始写*，则*右边的所有参数在调用时必须写上参数名
+def testnnn(*, para1=100, para2=333, para3=0):
+    pass
+# testnnn(22, 33, 55)  # 会报错
+testnnn(para1=11, para2=22, para3=33)
+
+
+def testnnn22(para1=100, *, para2=333, para3=0):
+    pass
+testnnn22(33, para2=44, para3=66)
+
 
 
 

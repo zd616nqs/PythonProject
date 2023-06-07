@@ -54,6 +54,7 @@ print(bool("hello"))      # True
 print(bool("False"))      # True
 print(bool(""), bool('')) # False False
 print(bool(None))         # False
+# 判断是否为None必须使用is None或 is not None，不能使用 == None或 != None
 
 # ------bool转其他类型------
 print("---------")

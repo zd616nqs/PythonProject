@@ -65,6 +65,9 @@ print(f1)
 stu1.city = '上海'
 print(stu1.city)  # 上海
 
+
+
+
 # -------防止动态添加属性，类里的属性可控：使用__slots__
 # __slots__是个元组，用来规定类里可以存在的属性
 class Person(object):
@@ -77,6 +80,12 @@ class Person(object):
 person1 = Person('牛牛', 18)
 # person1.city = '上海' # 会触发报错：AttributeError: 'Person' object has no attribute 'city'
 
+
+
+
+# ---------使用del删除对象内的属性-------
+del person1.age
+# print(33333, person1.age) # 会报错
 
 
 
@@ -293,9 +302,6 @@ __mul__, 实例对象的值相除
 1.0
 
 '''
-
-
-
 
 
 
