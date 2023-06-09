@@ -17,12 +17,16 @@ print(lizhi111.type)  # 猫咪
 
 # 2.类属性的修改：只能通过类对象进行修改
 lizhi111.type = '狗狗'  # 并不会修改类属性，而是给实例对象lizhi111添加了一个新的对象属性
+print(Lizhi.type) # 猫咪
 
 Lizhi.type = '猴子'
 print(lizhi222.type) # 猴子
 
 
 # --------------------私有变量---------------------
+# 可见性：以两个_下划线开始的属性或者方法，对外不可见，不能被直接调用
+# 备注：如果__xxx__前后都加双下划线，就又变成对外可见了
+# 原理：底层被改成了：_类名__属性名
 class Coco(object):
     def __init__(self, name, age) -> None:
         self.name = name
@@ -48,42 +52,21 @@ coco111 = Coco('coco1号', 2)
 
 # -------私有变量调用------
 # 0.常规获取方式，会报错，获取不到私有变量
-# print(coco111.__height)  
-# 1. 使用 对象._类名__私有变量名的方式可以获取到
+# coco111.__demo()        # 报错
+# print(coco111.__height) # 报错
+
+# 1. 使用 实例对象._类名__私有方法名/变量名的方式可行
+coco111._Coco__demo()          # 我是私有函数__demo
 print(coco111._Coco__height)      # 10.5斤   
+
 # 2.自定义set和get方法手动获取
 print(coco111.get_height_func())  # 10.5斤   
 coco111.set_height_func('9斤')
 print(coco111.get_height_func())  # 9斤
-# 3.使用property调用 todo:niu 待补充
 
-# -------私有方法调用------
-# 0.常规方式调用，会报错
-# coco111.__demo()  
-# 1. 使用 实例对象._类名__私有方法名的方式可行
-coco111._Coco__demo()  # 我是私有函数__demo
-
-
-
-# -------设置属性或方法的不可见，前面添加两个下划线就不能被调用了-------
-# 备注：如果__xxx__前后都加双下划线，就又变成对外可见了
-# 原理：底层被改成了：_类名__属性名，但是不能用这种格式打印
-class TestUnsee(object):
-    def __init__(self) -> None:
-        self.__name = "牛牛"
-        self.__age = 12
-        
-    def __sleep(self):
-        print('睡觉')
-testunsee = TestUnsee()
-# print(testunsee.__name)  # 会报错，两个下划线代表属性不可见，不能强行调用
-# testunsee.__sleep()      # 会报错
-
-
-
-
-# -------------使用@property声明 变相控制getter、setter方法-------
+# 3.使用@property声明 变相控制getter、setter方法-------
 # @property装饰器就是负责把一个方法变成属性调用的
+# 备注：指定的当做set和get的方法名必须一致
 # 参考链接：https://www.tianqiweiqi.com/python-property.html
 class LizhiCat(object):
     def __init__(self) -> None:
@@ -150,7 +133,6 @@ Dog.jump()    # <class '__main__.Dog'>
 # ---------------------单例的使用-----------
 # 还有其他5种实现方式：todo:niu 待补充进笔记 
 # https://blog.csdn.net/weixin_51213906/article/details/125905589 
-
 class SingletonTest(object):
     def __init__(self, name) -> None:
         self.name = name
@@ -259,7 +241,4 @@ print(dog111._Animal222__fav)  # 输出：父类私有变量
 # 2.子类访问父类的 私有方法（格式：实例对象._父类名__私有方法）
 # dog111._Dog222__fatherMethod()   # 会报错
 dog111._Animal222__fatherMethod()  # 输出：狗狗狗狗奔跑
-
-
-
 
