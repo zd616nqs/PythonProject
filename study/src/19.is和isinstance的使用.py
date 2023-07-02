@@ -11,8 +11,8 @@ class Student(Person):
 
 
 # 使用is相当于比较两个实例对象的内存地址是否相同 id(p1) == id(p2)
-p1 = Person('1号人', 30)
-p2 = Person('2号人', 31)
+p1 = Person('牛牛', 30)
+p2 = Person('牛牛', 30)
 print(p1 is p2)  # False
 
 
