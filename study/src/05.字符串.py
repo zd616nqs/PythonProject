@@ -27,18 +27,30 @@ name = 'niuqingshan'
 # 取值区间：包含start，不包含end。
 # 如果不写end则会截取到最后。  如果不设置start，会从头截取
 # step：截取的步长，默认1依次取（等于0时报错，小于0时表示从右往左获取）
-print(name[3])  # 结果：q
-# name[3] = 'm' # 操作不可变数据源，会报错
-print(name[3:7])    # 结果：qing        （步长step默认为1）
-print(name[3:7:2])  # 结果：qn          （步长step为2）
-print(name[3:])     # 结果：qingshan    （截取到最后）
-print(name[:3])     # 结果：niu         （会从头截取）
-print(name[::])     # 结果：niuqingshan （从头到尾复制）
-print(name[::-1])   # 结果：nahsgniquin （倒序）
-# start和end为负数时，表示从右边开始数
-print(name[-8:-4])      # 结果：qing （从右数第7位到从右数第4位，从左至右打印）
-print(name[-5:-9:-1])   # 结果：gniq （从右数第5位到从右数第8位，从右至左打印）
-print(name[-9:-5:-1])   # 结果：空输出，start和end位置不对
+print(name[3])       # 结果：q
+# name[3] = 'm'      # 操作不可变数据源，会报错
+print(name[3:7])     # 结果：qing         取值范围[3,7)（步长step默认为1）
+print(name[3:7:2])   # 结果：qn           取值范围[3,7)（步长step为2）
+
+print(name[3:])      # 结果：qingshan     取值范围[3,end]（从第3位截取到最后）
+print(name[-3:])     # 结果：han          取值范围[len-3,end]（从倒数第3位截取到最后）
+
+print(name[:3])      # 结果：niu          取值范围[0,3)（从头截取到第三位）
+print(name[:-3])     # 结果：niuqings     取值范围[0,len-3)（从头截取到倒数第三位）
+
+print(name[::])      # 结果：niuqingshan （从头到尾复制）
+print(name[::-1])    # 结果：nahsgniquin （倒序）
+
+
+print(name[-8:-4])       # 结果：qing   取值范围[len-8,len-4)（从左至右打印）
+print(name[-8:-4:1])     # 结果：qing   取值范围[len-8,len-4)（从左至右打印）
+print(name[-8:-4:-1])    # 结果：空，错误写法
+
+print(name[-4:-8])       # 结果：空，错误写法
+print(name[-4:-8:1])     # 结果：空，错误写法
+print(name[-4:-8:-1])    # 结果：sgni 取值范围(len-8,len-4]的字符串反向打印
+
+
 
 
 

@@ -8,7 +8,7 @@ import random
     1.python中不支持switch case语句
     2.区间判断的区别：oc、java等语言区间不能连写，但是python中 逻辑运算可以连续连接起来使用：30<xx<60
     3.隐式类型转换：if判断里，int值会隐式转换成bool值
-    4.三元表达式的区别：xx = num1 if (num1 > num2) else num2
+    4.三元表达式(三目运算)的区别：xx = num1 if (num1 > num2) else num2
 '''
 
 
