@@ -3,45 +3,9 @@ import inspect
 
 
 
-# # 装饰器带参数的情况
-# def can_play(play_age: int, play_clock: int):
-#     print('--年龄:{},时间:{}'.format(play_age, play_clock), end="-- ")
-    
-#     def handle_action(temp_func):            # play_game函数的函数体  在这里
-#         def do_action(temp_name, temp_game): # play_game函数的参数    在这里
-            
-#             temp_func(temp_name, temp_game)  # 真正的函数执行处：play_game('张三', '英雄联盟')
-            
-#             if play_age is None:
-#                 print('非法！！请输入用户年龄！')
-#             elif play_clock is None:
-#                 print('非法！！请输入游戏时间！')
-#             elif play_age > 18:
-#                 print('已成年', end=' ')
-#                 if play_clock > 22:
-#                     print('太晚了，睡觉把')
-#                 else:
-#                     print('时间合理，可以进行游戏')
-#             else:
-#                 print('未成年，不能游戏')
-#         return do_action
-#     return handle_action
-
-
-# @can_play(play_age=15, play_clock=23) # 装饰器带参数
-# def play_game(name, game):
-#     print('--{}想玩{}--'.format(name, game), end="  ")
-
-
-# play_game('张三', '英雄联盟') 
-# # --年龄:15,时间:23-- --张三想玩英雄联盟--  未成年，不能游戏
-
-
-
-
-
+# 装饰器带参数的情况
 def can_play(limit_age: int, limit_clock: int):
-    # 注意：此处只会再第一次调用temp_func(即play_game)函数时才会执行，后面再多次调用是不会走的
+    # 注意：此处只会在第一次调用temp_func(即play_game)函数时才会执行，后面再多次调用是不会走的
     print('测试代码，验证此处会执行几遍')
     
     # play_game函数的函数体,在handle_action处

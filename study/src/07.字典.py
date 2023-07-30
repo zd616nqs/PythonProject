@@ -25,6 +25,10 @@ print(person[('1', '2', '3')])  # 结果：hello
 print(person.get('啦啦啦啦'))                   # 结果：None
 print(person.get('啦啦啦啦', '找不到对应的key'))  # 结果：找不到对应的key
 
+findkey = "牛牛"
+messageWithNoFound = f"对不起，没有找到{findkey}的值"
+print(person.get(findkey, messageWithNoFound)) # 对不起，没有找到牛牛的值
+
 
 # ----增删改-----
 person222 = {'name': '你牛', 'age': 18}

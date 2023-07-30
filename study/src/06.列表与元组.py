@@ -42,23 +42,24 @@ print([1, 2, 3] + [7, 8, 9])  # 结果：[1, 2, 3, 7, 8, 9]
 # -----切片step为默认值1时，切片数跟替换的数据数量不用一致-----
 sss = [0, 1, 2, 3, 4, 5, 6]
 
-sss[1:3] = [111, 222]
-print(sss) 
-# [0, 111, 222, 3, 4, 5, 6]
-sss[1:3] = [111111, 222222, 333333, 444444]
-print(sss)
-# [0, 111111, 222222, 333333, 444444, 3, 4, 5, 6]
+sss[1:3] = [111, 222] 
+print(sss)  # [0, 111, 222, 3, 4, 5, 6]
+
+sss[1:3] = [111111, 222222, 333333, 444444] 
+print(sss) # [0, 111111, 222222, 333333, 444444, 3, 4, 5, 6]
+
 sss[1:3] = [999]
-print(sss)
-# [0, 999, 333333, 444444, 3, 4, 5, 6]
+print(sss) # [0, 999, 333333, 444444, 3, 4, 5, 6]
 
 # ----切片step为大于默认值时，切片数跟替换的数据数量必须一致---
 mmm = [0, 1, 2, 3, 4, 5, 6]
 mmm[1::2] = [111, 222, 333]
+print(mmm) # [0, 111, 2, 222, 4, 333, 6]
+
 # mmm[1::2] = [111, 222, 333, 444]  切片数量跟数据数量对不上，会报错
 # mmm[1::2] = [111, 222]            切片数量跟数据数量对不上，会报错
-print(mmm)
-# [0, 111, 2, 222, 4, 333, 6]
+
+
 
 
 
@@ -67,9 +68,10 @@ print(mmm)
 names555 = ['牛', '青', '山', '到', '次', '一', '游']
 # *****pop() 删除并返回一个下标的元素(默认删除最后一个元素）*****
 xx11 = names555.pop()
-xx22 = names555.pop(0)
 print(xx11)  # 结果：游
+xx22 = names555.pop(0)
 print(xx22)  # 结果：牛
+
 print(names555)  # 结果：['青', '山', '到', '次', '一']
 
 # *****remove(str) 删除一个指定的元素*****
@@ -96,14 +98,15 @@ del names666[:]  # 清空所有
 # s.index(x)             在s中搜索字符串x的下标，从左往右搜索
 # s.index(x,start)       搜索范围：[start, len(s)]
 # s.index(x, start, end) 搜索范围：[start, end)
-names777 = ['牛', '青', '山', '到', '次', '一', '游']
+names777 = ['牛', '青', '山', '到', '此', '一', '游']
 print(names777.index('青'))  # 结果：1
 print(names777.count('青'))  # 结果：1
 print('山' in names777)      # 结果：True
 print('山' not in names777)  # 结果：False
-# 注意：取数组的最后一个元素的快捷写法
-names777[-1]
+# 注意：取数组的最后一个元素的快捷写法 (从1开始数)
 print(names777[-1])  # 结果：游
+# 取倒数第三个元素(从1开始数)
+print(names777[-3])  # 结果：此
 
 
 
@@ -131,8 +134,31 @@ tempIdx = 0
 while tempIdx < len(listArr):
     print(listArr[tempIdx])
     tempIdx += 1
-    
-    
+
+print("3242345342")
+# enumerate遍历
+for eleTuple in enumerate(listArr):
+    print(eleTuple)
+# (0, '牛')
+# (1, '青')
+# (2, '山')
+# (3, '到')
+# (4, '次')
+# (5, '一')
+# (6, '游')
+
+for index, ele in enumerate(listArr):
+    print(f"index:{index} ele:{ele}")
+# index:0 ele:牛
+# index:1 ele:青
+# index:2 ele:山
+# index:3 ele:到
+# index:4 ele:次
+# index:5 ele:一
+# index:6 ele:游 
+
+
+
 
 # 练习：冒泡排序
 # python内交换两个变量的值写法：  a, b = b, a
@@ -155,16 +181,20 @@ sortArr111 = [5, 2, 6, 1, 3, 8, 7]
 sortArr111.sort()
 print(sortArr111)  # 结果：[1, 2, 3, 5, 6, 7, 8]
 
-sortArr111.sort(reverse=True)
-print(sortArr111)  # 结果：[8, 7, 6, 5, 3, 2, 1]
-
 sortNewArr = sorted(sortArr111)  # 返回一个新的排序过的列表
 print('sortNewArr: ', sortNewArr)  # 结果:sortNewArr:  [1, 2, 3, 5, 6, 7, 8]
 
+# 反向排序的三种方式
+# 方式1：
+sortArr111.sort(reverse=True)
+print(sortArr111)  # 结果：[8, 7, 6, 5, 3, 2, 1]
+
+# 方式2：
 sortArr222 = [1, 2, 3]
 sortArr222.reverse()
 print('sortArr222: ', sortArr222)  # 结果：sortArr222:  [3, 2, 1]
 
+# 方式3：
 sortArr333 = [1, 2, 3]
 sortArr333 = sortArr333[::-1]
 print('sortArr333: ', sortArr333)  # 结果：sortArr333:  [3, 2, 1]
@@ -309,6 +339,11 @@ print((1, 2, 3) + (7, 8, 9))  # 结果：(1, 2, 3, 7, 8, 9)
 tuple333 = (5, 3, 1, 4)
 sortNewList = sorted(tuple333)  # 返回一个新的排序过的列表
 print('sortNewList: ', sortNewList)  # 结果:sortNewArr:  [1, 3, 4, 5]
+
+# 元组的反转
+reversedTuple = tuple333[::-1]
+print('reversedTuple: ', reversedTuple)  # 结果:reversedTuple:  (4, 1, 3, 5)
+
 
 # 元组的解包
 nqs_name, nqs_age, nqs_gender = ('牛青山', 30, '男')

@@ -1,3 +1,5 @@
+from typing import TypeVar
+
 # -------------函数的基本介绍-----------
 print('-----函数的基本介绍--------')
 # 在python中，使用关键字def来声明一个函数
@@ -43,8 +45,8 @@ def addExample333(para1, para2) -> list:
 
 
 
-# ----定义行数参数和返回值的类型----
-print('-----定义行数参数和返回值的类型--------')
+# ----定义参数和返回值的类型----
+print('-----定义参数和返回值的类型--------')
 # 下面的写法声明类型只能起到参考作用，int可以相加，但是串两个str进去，不会报错的
 # ！！！注意：声明类型是没用的，只是参考作用
 def typeExampleMethod(para1: int, para2: int):
@@ -57,6 +59,19 @@ print('\n')
 # https://blog.csdn.net/ammmao/article/details/89527349
 # https://blog.csdn.net/qq_39246147/article/details/129157112
 
+
+# ----定义泛型类型的入参和返回值--------
+T = TypeVar('T')
+def exampleTypeVarFunc(para1: T) -> T:
+    return para1
+
+resultWithTypevarInt = exampleTypeVarFunc(666)
+print('resultWithTypevarInt: ', resultWithTypevarInt)   # resultWithTypevarInt:  666
+resultWithTypevarStr = exampleTypeVarFunc("niuniuniu")
+print('resultWithTypevarStr: ', resultWithTypevarStr)   # resultWithTypevarStr:  niuniuniu
+resultWithTypevarList = exampleTypeVarFunc([1, 2, 3])
+print('resultWithTypevarList: ', resultWithTypevarList) # resultWithTypevarList:  [1, 2, 3]
+# 参考链接：https://segmentfault.com/a/1190000042672657
 
 
 
@@ -182,28 +197,65 @@ print('\n')
 # -----入参的类型问题(可变/不可变类型参数)-------
 print('-----入参的类型问题(可变/不可变类型参数)--------')
 
-testStr = 'niuniuniu'
-testTuple = (1, 2, 3)
-testInt = 673
-def testImmutableType(paraStr, paraTuple, paraInt):
-    paraStr = 'shanshanshan'
-    paraTuple = (888, 999)
-    paraInt = 123
-    print('paraStr={}, paraTuple={}, testInt={}'.format(paraStr, paraTuple, paraInt))
-testImmutableType(testStr, testTuple, testInt)  
-# 都没变 paraStr=niuniuniu, paraTuple=(1, 2, 3), testInt=673
 
 
-testList = [1, 2, 3]
-testDict = {'x': 1, 'y': 2, 'z': 3}
-testSet = {7, 8, 9}
-def testMutableType(paraList, paraDict, paraSet):
-    paraList = [111, 222, 333]
-    paraDict = {'mm': 666, 'nn': 777}
-    paraSet = {777, 888, 999}
-    print('paraList={}, paraDict={}, paraSet={}'.format(paraList, paraDict, paraSet))
-testMutableType(testList, testDict, testSet)
-# 都改变了 paraList=[111, 222, 333], paraDict={'mm': 666, 'nn': 777}, paraSet={888, 777, 999}
+
+
+# ------------结论：-------------
+# 字符串、元素、整数是不可变的，所以赋值之后会创建一个新的对象
+# 11和22的取值不一样，内存地址也不一样
+
+testStr11 = 'niuniuniu'
+testTuple11 = (1, 2, 3)
+testInt11 = 673
+print('testStr11={}, testTuple11={}, testInt11={}'.format(testStr11, testTuple11, testInt11))
+print('testStr11={}, testTuple11={}, testInt11={}'.format(id(testStr11), id(testTuple11), id(testInt11)))
+# testStr11=niuniuniu, testTuple11=(1, 2, 3), testInt11=673
+# testStr11=4363005104, testTuple11=4363009664, testInt11=4361860400
+testStr22 = testStr11
+testStr22 = 'shanshanshan'
+testTuple22 = testTuple11
+testTuple22 = (888, 999)
+testInt22 = testInt11
+testInt22 = 123
+print('testStr11={}, testTuple11={}, testInt11={}'.format(testStr11, testTuple11, testInt11))
+print('testStr22={}, testTuple22={}, testInt22={}'.format(testStr22, testTuple22, testInt22))
+print('testStr11={}, testTuple11={}, testInt11={}'.format(id(testStr11), id(testTuple11), id(testInt11)))
+print('testStr22={}, testTuple22={}, testInt22={}'.format(id(testStr22), id(testTuple22), id(testInt22)))
+# testStr11=niuniuniu, testTuple11=(1, 2, 3), testInt11=673
+# testStr22=shanshanshan, testTuple22=(888, 999), testInt22=123
+# testStr11=4417203184, testTuple11=4417207744, testInt11=4416058672
+# testStr22=4417206064, testTuple22=4417075904, testInt22=4391432040
+print('\n')
+
+
+
+
+# ------------结论：-------------
+# 列表、字典、集合是可变对象
+# 11和22的内存地址共享，所以取值肯定也是一样的
+
+testList11 = [1, 2, 3]
+testDict11 = {'x': 1, 'y': 2, 'z': 3}
+testSet11 = {7, 8, 9}
+print('testList11={}, testDict11={}, testSet11={}'.format(testList11, testDict11, testSet11))
+print('testList11={}, testDict11={}, testSet11={}'.format(id(testList11), id(testDict11), id(testSet11)))
+# 结果：testList11=[1, 2, 3], testDict11={'x': 1, 'y': 2, 'z': 3}, testSet11={8, 9, 7}
+# 结果：testList11=4363250240, testDict11=4363119552, testSet11=4363002016
+testList22 = testList11
+testList11.append(666)
+testDict22 = testDict11
+testDict22['nnn'] = 777
+testSet22 = testSet11
+testSet22.add(888)
+print('testList11={}, testDict11={}, testSet11={}'.format(testList11, testDict11, testSet11))
+print('testList22={}, testDict22={}, testSet22={}'.format(testList22, testDict22, testSet22))
+print('testList11={}, testDict11={}, testSet11={}'.format(id(testList11), id(testDict11), id(testSet11)))
+print('testList22={}, testDict22={}, testSet22={}'.format(id(testList22), id(testDict22), id(testSet22)))
+# 结果：testList11=[1, 2, 3, 666], testDict11={'x': 1, 'y': 2, 'z': 3, 'nnn': 777}, testSet11={8, 9, 888, 7}
+# 结果：testList22=[1, 2, 3, 666], testDict22={'x': 1, 'y': 2, 'z': 3, 'nnn': 777}, testSet22={8, 9, 888, 7}
+# 结果：testList11=4404620864, testDict11=4404490048, testSet11=4404373856
+# 结果：testList22=4404620864, testDict22=4404490048, testSet22=4404373856
 print('\n')
 
 

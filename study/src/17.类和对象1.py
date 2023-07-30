@@ -45,7 +45,7 @@ stu2.eat() # 琳琳正在吃饭
 
 # 设置缺省参数,初始化时就可以不用传了
 class Friend(object):
-    def __init__(self, name, age, friends=None) -> None:
+    def __init__(self, name, age, friends: list = None) -> None:
         # 处理缺省参数
         if friends is None:
             friends = []
@@ -55,7 +55,7 @@ class Friend(object):
         self.friends = friends
 
 f1 = Friend('牛牛', 18)
-print(f1)
+print(f1) # <__main__.Friend object at 0x104892e50>
 
 
 

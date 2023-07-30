@@ -30,17 +30,22 @@ print('testSet333: ', testSet) # testSet333:  {'qing', 'shan'}
 
 
 
-# union：a.union(b) 将集合a和b取并集，返回一个新的集合
-xxx = {'111', '222'}.union({'222', '777', '888'})
-print('xxx: ', xxx)  # 结果：xxx:  {'111', '888', '222', '777'}
-
-
-# update:a.update(b) 将集合b拼进集合a内
+# ---union：a.union(b) 将集合a和b取并集，返回一个新的集合
 aaa = {'111', '222'}
 bbb = {'222', '777', '888'}
+xxx = aaa.union(bbb)
+print(f'aaa:{aaa} bbb:{bbb} xxx:{xxx}') 
+# 结果：aaa:{'222', '111'} bbb:{'222', '888', '777'} xxx:{'111', '888', '777', '222'}
+print('aaa:%x bbb:%x xxx:%x' % (id(aaa), id(bbb), id(xxx))) 
+# 结果：aaa:105d925e0 bbb:105d92dc0 xxx:105d92ea0
+
+
+# ---update:a.update(b) 将集合b拼进集合a内
 aaa.update(bbb)
 print('aaa:{}, bbb:{}'.format(aaa, bbb))  
 # 结果：aaa:{'111', '888', '777', '222'}, bbb:{'888', '777', '222'}
+print('aaa:%x bbb:%x' % (id(aaa), id(bbb))) 
+# 结果：aaa:104f725e0 bbb:104f72dc0
 
 
 # 清空集合

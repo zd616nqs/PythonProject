@@ -4,12 +4,15 @@
 # 2.一个函数作为两位一个函数的返回值  return 调用函数
 def demoFunc1():
     print("descFunc1")
+    
 def demoFunc2():
     print("descFunc2")
     return demoFunc1
+
 def demoFunc3():
     print("descFunc3")
     return demoFunc1()
+
 print(demoFunc1())    # descFunc1 None
 print(demoFunc2())    # descFunc2 <function descFunc1 at 0x102f884a0>
 print(demoFunc2()())  # descFunc2 descFunc1 None

@@ -56,15 +56,17 @@ print(name[-4:-8:-1])    # 结果：sgni 取值范围(len-8,len-4]的字符串�
 
 # ----------------字符串查找操作------------------
 # 常见的方法： find、index、rfind、rindex
-# rfind rindex 查找顺序从右向左
+# rfind rindex 查找顺序从右向左(起始index从0开始，匹配字符串的首字母的index)
 # 参数：s.index(x, start, end)
 name222 = 'niuqingqingshan'
-print(name222.find("qi"))      # 结果：3
+print(name222.find("qi"))      # 结果：3('q'从左往右数index为3)
+print(name222.index("qi"))     # 结果：3('q'从左往右数index为3)
+
 print(name222.find("mama"))    # 结果：-1
-print(name222.index("qi"))     # 结果：3
 # print(name222.index("mama")) # 结果：没有找到，会报错
-print(name222.rfind("qi"))     # 结果：7
-print(name222.rindex("qi"))    # 结果：7
+
+print(name222.rfind("qi"))     # 结果：7('q'从右往左数index为7)
+print(name222.rindex("qi"))    # 结果：7('q'从右往左数index为7)
 
 
 
@@ -131,9 +133,13 @@ print('nqs1994: ', nqs1994)  # .baidu.
 # lstrip 删除左边的空格(匹配从左到右的第一段空格)
 # rstrip 删除右边的空格(匹配从右到左的第一段空格)
 name666 = 'niuqingshan'
-print(name666.ljust(30)+"mark")       # 结果：niuqingshan                   mark
-print(name666.ljust(30, '-')+"mark")  # 结果：niuqingshan-------------------mark
-print(name666.ljust(5)+"mark")        # 结果：niuqingshanmark
+print("start"+name666.ljust(30)+"end")       # 结果：startniuqingshan                   end
+print("start"+name666.ljust(30, '-')+"end")  # 结果：startniuqingshan-------------------end
+print("start"+name666.ljust(5)+"end")        # 结果：startniuqingshanend
+
+print("start"+name666.rjust(30)+"end")       # 结果：start                   niuqingshanend
+print("start"+name666.rjust(30, '-')+"end")  # 结果：start-------------------niuqingshanend
+print("start"+name666.rjust(5)+"end")        # 结果：startniuqingshanend
 
 print(name666.center(30, '-'))        # 结果：---------niuqingshan----------
 print(name666.center(5, '-'))         # 结果：niuqingshan
@@ -173,6 +179,9 @@ mydemo2 = "牛青山到此山一游"
 print(mydemo2.partition("山"))      # 结果：('牛青', '山', '到此山一游')
 print(mydemo2.rpartition("山"))     # 结果：('牛青山到此', '山', '一游')
 
+print(mydemo2.partition("到此山"))   # 结果：('牛青山', '到此山', '一游')
+print(mydemo2.rpartition("到此山"))  # 结果：('牛青山', '到此山', '一游')
+
 print(mydemo2.partition("牛青山"))   # 结果：('', '牛青山', '到此山一游')
 print(mydemo2.rpartition("牛青山"))  # 结果：('', '牛青山', '到此山一游')
 
@@ -186,6 +195,7 @@ print(mydemo2.rpartition("一游"))   # 结果：('牛青山到此山', '一游'
 # %d  整型
 # %nd 整型，显示n位，不够的话前面使用空格补齐
 # %f  浮点型，进行四舍五入
+# %x 打印内存地址
 # ----方式1----
 name888 = "张三"
 age111 = 22
@@ -201,7 +211,7 @@ print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(name888, age1
 # 结果：大家好，我叫张三，今年22岁了，挣了999.987钱
 
 # ----方式3----
-print('大家好，我叫{name673}，今年{age673}岁了，挣了{money673}钱'.format(name673='李四', age673=8, money673=8888.88))  
+print('大家好，我叫{nameTag}，今年{ageTag}岁了，挣了{moneyTag}钱'.format(nameTag=name888, ageTag=age111, moneyTag=money))  
 # 结果：大家好，我叫李四，今年8岁了，挣了8888.88钱
 
 # ----方式4----
@@ -209,7 +219,7 @@ print('大家好，我叫{name673}，今年{age673}岁了，挣了{money673}钱'
 # 结果：大家好，我叫李四，今年8岁了，挣了8888.88钱
 print('大家好，我叫{0}，今年{1}岁了，挣了{2}钱'.format('李四', 8, 8888.88))  
 print('大家好，我叫{2}，今年{1}岁了，挣了{0}钱'.format(8888.88, 8, '李四'))  
-print('大家好，我叫{name673}，今年{1}岁了，挣了{0}钱'.format(8888.88, 8, name673='李四'))  
+print('大家好，我叫{nameTag}，今年{1}岁了，挣了{0}钱'.format(8888.88, 8, nameTag='李四'))  
 # print('大家好，我叫{name673}，今年{2}岁了，挣了{1}钱'.format('占位啦啦啦', 8888.88, 8, name673='李四'))  下标不对应，会报错
 
 # ----方式5-----
@@ -220,7 +230,7 @@ print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(*listData))
 # 使用  **dictData  的方式遍历 字典 (以下2种写法输出相同)
 dictData = {"name": "青青", "age": 22, "money": 66666}
 print('大家好，我叫{}，今年{}岁了，挣了{}钱'.format(dictData['name'], dictData['age'], dictData['money'])) 
-print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format(**dictData)) 
+print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format(**dictData)) # 占位的key必须跟dict内的key名称一致，否则会报错
 # 使用format_map 遍历字典
 print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format_map(dictData)) 
 
@@ -229,7 +239,8 @@ print('大家好，我叫{name}，今年{age}岁了，挣了{money}钱'.format_m
 # 注意：大小写R\r都可以
 word6 = "good af\ternoon"  # 结果：good af ernoon 
 word7 = r"good af\ternoon" # 结果：good af\ternoon
-print(word6, "\n", word7)
+print(word6)
+print(word7)
 
 # 在字符串前面加f或者F，可以直接使用变量名
 testStr1 = '牛牛'

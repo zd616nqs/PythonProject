@@ -24,9 +24,9 @@ print('dictToList: ', dictToList)  # 结果：dictToList:  ['name', 'age', 'gend
 
 # 对象==》jsonstring
 dict111 = {'name': '牛牛', 'age': 18, 'gender': '男'}
-xx = json.dumps(dict111)  # 字典转换成jsonstring
-print(type(xx)) # <class 'str'>
-print('xx: ', xx)  # 结果：xx:  {"name": "\u725b\u725b", "age": 18, "gender": "\u7537"}
+tempJsonStr = json.dumps(dict111)  # 字典转换成jsonstring
+print(type(tempJsonStr)) # <class 'str'>
+print('tempJsonStr: ', tempJsonStr)  # tempJsonStr:  {"name": "\u725b\u725b", "age": 18, "gender": "\u7537"}
 
 
 # jsonstring==》对象

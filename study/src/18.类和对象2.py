@@ -1,9 +1,10 @@
 
+
 # ----------------------类属性 和 实例属性---------------------
 class Lizhi(object):
     type = '猫咪'
     
-    def __init__(self, name, age) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
